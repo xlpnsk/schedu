@@ -1,0 +1,14 @@
+
+<div class="container">
+    <input type="search" class="form_input" id="search" placeholder="Search" required="" />
+    
+</div>
+
+<div class="card-container">
+    <div class="card" *ngFor="let staffMemeber of staffList">
+        <a href="#">
+            <i class="fas fa-graduation-cap"></i>
+            <h2>{{staffMemeber.title}} {{staffMemeber.lastName}} {{staffMemeber.firstName}}</h2>
+        </a>
+    </div>
+</div>

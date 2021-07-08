@@ -1,0 +1,126 @@
+.welcome{
+    width: 100%;
+    padding: 3rem 0 2.5rem 0;
+    background-color: var(--bg-secondary);
+    color: white;
+    text-align: center;
+    border-radius: 000.3rem;
+    box-shadow: 0 0 10px 8px #818181;
+    margin-bottom: 1.5rem;
+}
+
+h1{
+    display: inline;
+    font-family: 'Zen Tokyo Zoo';
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.5rem;
+    word-spacing: 00.2rem;
+}
+
+h3{
+    width: 100%;
+    font-size: 2rem;
+    margin: auto;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.welcome {
+    overflow-y: hidden;
+    display: block;
+    }
+
+.welcome .welcome-text {
+    animation-name: appear;
+    animation-duration: 2s;
+    }
+
+@keyframes appear {
+      from { transform: translateY(-7rem) }
+      to {   transform: translateY(0)}
+    }
+  
+/*Cards*/
+
+.card-container{
+    margin-top: 1.5rem;
+    display: flex;
+    width:100%;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.card{
+    display: flex;
+    position: relative;
+    width:30rem;
+    height: 10rem;
+    min-width: 5rem;
+    background-color: gainsboro;
+    overflow: hidden;
+    font-family: 'DM Mono', monospace;
+    margin: 0.7rem;
+    border-radius: 000.2rem;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 0 4px 4px #d0d0d0;
+}
+
+.card-container:last-of-type{
+    margin-top: 0.1rem;
+}
+
+.card-header{
+    margin-top: 3rem;
+}
+
+a{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    background-color:gray;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+    .card-container:last-of-type{
+        margin-bottom: 1rem;
+    }
+
+    h3{
+        font-size: 1.5rem;
+    }
+
+    .foot {
+        margin-bottom: 6rem !important;
+    }
+}
+.foot{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-secondary);
+    transform: translateY(2rem);
+    display: flex;
+    align-items: center;
+    margin:auto;
+    justify-content: center;
+    box-shadow: 0 0px 35px 10px black;
+}
+
+.foot h2, .foot h4{
+    color: gainsboro;
+    margin-top: 0.5rem;
+}
+
+.foot-content{
+    text-align: center;
+}
