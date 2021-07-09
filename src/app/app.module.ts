@@ -14,6 +14,7 @@ import { DemoMaterialModule } from './material-module';
 import { DayComponent } from './calendar/day/day.component';
 import { TimeComponent } from './calendar/time/time.component';
 import { IntervalComponent } from './calendar/day/interval/interval.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { IntervalComponent } from './calendar/day/interval/interval.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    FormsModule
   ],
   providers: [
     ApiService

@@ -5,3 +5,16 @@
     grid-column-gap: 5px;
     grid-row-gap: 0px;
 }
+
+.mini-form{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.form-field{
+    width: 20rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}

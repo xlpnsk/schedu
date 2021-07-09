@@ -1,32 +1,48 @@
 import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { MAT_DATE_RANGE_SELECTION_STRATEGY } from '@angular/material/datepicker';
 import { ActivatedRoute } from '@angular/router';
 import * as internal from 'stream';
 import { ApiService } from '../api.service';
 import { Staff } from '../models/staff.model';
+import { Task } from '../models/task.model';
+import { WeekRangeSelectionStrategy } from './WeekRangeSelectionStrategy';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.css'],
+  providers: [{
+    provide: MAT_DATE_RANGE_SELECTION_STRATEGY,
+    useClass: WeekRangeSelectionStrategy
+  }]
 })
 export class CalendarComponent implements OnInit {
 
   intervals:number[]=[];
   days:number[]=[];
 
-  foods: any[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-
   staffList:Staff[]|null=[];
+
   selected:string|null=null;
+  oldSelected:string|null=null;
+
+  changeDetected:boolean=false;
+
+  taskList:Task[]|null=[];
+  tasksForWeek:Task[]|null=[];
+
+  weekStart:Date|null=null;
+  oldWeekStart:Date|null=null;
+
+  weekStop:Date|null=null;
+  oldWeekStop:Date|null=null;
+  
   constructor(private api:ApiService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.selected=this.route.snapshot.paramMap.get('selected');
     console.log(this.selected);
+    //this.oldSelected=this.selected;
     for(let i=0;i<56;i++)
       this.intervals[i]=i;
 
@@ -41,8 +57,30 @@ export class CalendarComponent implements OnInit {
         console.log(error);
       })
       .finally(() => {
-        console.log('Selecting from Staff compleated');
+        console.log('Selecting from Staff completed');
       });
+  }
+
+  ngDoCheck(){
+    if(this.selected != this.oldSelected){
+      this.changeDetected=true;
+      console.log('Selection change detected!');
+      if(this.selected != null){
+        this.api.getTasks(parseInt(this.selected))
+        .then((tasks) => {
+          this.taskList=tasks.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          console.log('Selecting from Tasks completed');
+        });
+      }
+      this.oldSelected=this.selected;
+    }
+
+    
   }
 
 
