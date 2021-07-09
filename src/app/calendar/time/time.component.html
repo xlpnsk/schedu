@@ -1,0 +1,11 @@
+<div class="time-column">
+<ng-template ngFor let-i="index" let-interval [ngForOf]="intervals">
+        <div *ngIf="showIntervalNum(interval); then thenBlock12 else elseBlock12"></div>
+                  <ng-template #thenBlock12>
+                    <div class="time">{{8+(interval*15)/60}}:00</div>
+                  </ng-template>
+                  <ng-template #elseBlock12>
+                    <div class="time"><p></p></div>
+                  </ng-template>
+</ng-template>
+</div>

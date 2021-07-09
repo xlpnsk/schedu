@@ -1,1 +1,19 @@
 <p>calendar works!</p>
+<mat-form-field appearance="fill">
+    <mat-label>Staff member</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option [value]="null"></mat-option>
+      <mat-option *ngFor="let staff of staffList" [value]="staff.id.toString()">
+        {{staff.title}} {{staff.firstName}} {{staff.lastName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<div *ngIf="selected!='' && selected!=null"><h2>{{selected}}</h2></div>
+
+<div class="cal-container" *ngIf="selected!='' && selected!=null">
+        <app-time></app-time>
+      <ng-template ngFor let-j="index" let-day [ngForOf]="days">
+        <app-day></app-day>
+      </ng-template>
+</div>

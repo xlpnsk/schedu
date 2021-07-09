@@ -1,0 +1,11 @@
+<ng-template [ngIf]="isTask()" [ngIfElse]="isntTask">
+    <div class="task">
+      Task.
+    </div>
+  </ng-template>
+  
+  <ng-template #isntTask>
+    <div class="normal">
+      Normal.
+    </div>
+  </ng-template>

@@ -11,6 +11,9 @@ import { StaffComponent } from './staff/staff.component';
 import { ApiService } from './api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
+import { DayComponent } from './calendar/day/day.component';
+import { TimeComponent } from './calendar/time/time.component';
+import { IntervalComponent } from './calendar/day/interval/interval.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,10 @@ import { DemoMaterialModule } from './material-module';
     CalendarComponent,
     MainComponent,
     InfoComponent,
-    StaffComponent
+    StaffComponent,
+    DayComponent,
+    TimeComponent,
+    IntervalComponent
   ],
   imports: [
     BrowserModule,
