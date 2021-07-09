@@ -16,4 +16,16 @@ export class ApiService {
 
     return {data:Staff, error}
   }
+
+  async getTasks(id:number){
+    let { data: Tasks, error } = await this.supabase
+    .from('Tasks')
+    .select("*")
+
+    // Filters
+    .eq('staffId', id)
+
+    return {data:Tasks, error}
+
+  }
 }
