@@ -88,8 +88,8 @@ export class CalendarComponent implements OnInit {
       this.oldWeekStop=this.oldWeekStop
     }
 
-    if(this.selected != null && this.changeDetected){
-      this.api.getTasks(parseInt(this.selected))
+    if(this.selected != null && this.weekStart!=null && this.weekStop!=null && this.changeDetected){
+      this.api.getTasks(parseInt(this.selected),this.weekStart,this.weekStop)
       .then((tasks) => {
         this.taskList=tasks.data;
       })

@@ -18,14 +18,16 @@ export class ApiService {
     return {data:Staff, error}
   }
 
-  async getTasks(id:number){
+  async getTasks(id:number, startDate:Date, stopDate:Date){
     let { data: Tasks, error } = await this.supabase
     .from('Tasks')
     .select("*")
 
     // Filters
     .eq('staffId', id)
-
+    .gte('stopDate', startDate.toISOString())
+    .lte('startDate', stopDate.toISOString())
+    
     return {data:Tasks, error}
 
   }
