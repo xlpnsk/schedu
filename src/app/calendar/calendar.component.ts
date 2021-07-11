@@ -48,7 +48,7 @@ export class CalendarComponent implements OnInit {
       this.intervals[i]=i;
 
     for(let i=0;i<5;i++)
-      this.days[i]=i;
+      this.days[i]=i+1;
 
       this.api.getAllStaff()
       .then((staff) => {
@@ -108,5 +108,16 @@ export class CalendarComponent implements OnInit {
     if(ind%4==0)
       return true;
     return false;
+  }
+
+  getTasksForDay(day:number){
+    let dayTaskList:Task[]=[]
+    if(this.taskList!=null){
+      for(let task of this.taskList){
+        if(task.day==day)
+          dayTaskList.push(task);
+      }
+    }
+    return dayTaskList;
   }
 }
