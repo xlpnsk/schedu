@@ -2,6 +2,7 @@ import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { MAT_DATE_RANGE_SELECTION_STRATEGY } from '@angular/material/datepicker';
 import { ActivatedRoute } from '@angular/router';
+import { start } from 'repl';
 import * as internal from 'stream';
 import { ApiService } from '../api.service';
 import { Staff } from '../models/staff.model';
@@ -59,28 +60,47 @@ export class CalendarComponent implements OnInit {
       .finally(() => {
         console.log('Selecting from Staff completed');
       });
+
+      this.setStartStopWeek();
+  }
+
+  setStartStopWeek(){
+    let today = new Date();
+    let startDay = today.getDate() - today.getDay();
+    let stopDay = startDay + 6;
+    this.weekStart=new Date(today.getFullYear(),today.getMonth(),startDay);
+    this.weekStop=new Date(today.getFullYear(),today.getMonth(),stopDay);
+    this.oldWeekStart=this.weekStart;
+    this.oldWeekStop=this.weekStop;
   }
 
   ngDoCheck(){
     if(this.selected != this.oldSelected){
       this.changeDetected=true;
       console.log('Selection change detected!');
-      if(this.selected != null){
-        this.api.getTasks(parseInt(this.selected))
-        .then((tasks) => {
-          this.taskList=tasks.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          console.log('Selecting from Tasks completed');
-        });
-      }
       this.oldSelected=this.selected;
     }
 
-    
+    if(this.weekStart != this.oldWeekStart){
+      this.changeDetected=true;
+      console.log('Date change detected!');
+      this.oldWeekStart=this.weekStart;
+      this.oldWeekStop=this.oldWeekStop
+    }
+
+    if(this.selected != null && this.changeDetected){
+      this.api.getTasks(parseInt(this.selected))
+      .then((tasks) => {
+        this.taskList=tasks.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        console.log('Selecting from Tasks completed');
+      });
+    }
+    this.changeDetected=false;
   }
 
 
