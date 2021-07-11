@@ -19,20 +19,7 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
   </mat-form-field>
-
-  <p>{{weekStart}}</p>
-  <p>{{weekStop}}</p>
 </section>
-<div *ngIf="selected!='' && selected!=null">
-  <h2>{{selected}}</h2>
-  <ng-template ngFor let-task [ngForOf]="taskList">
-    <p>{{task.id}}</p>
-    <p>{{task.description}}</p>
-    <p>{{task.startDate}}</p>
-    <p>{{task.stopDate}}</p>
-    <p>{{task.day}}</p>
-  </ng-template>
-</div>
 
 <div class="cal-container" *ngIf="selected!='' && selected!=null">
         <app-time></app-time>
