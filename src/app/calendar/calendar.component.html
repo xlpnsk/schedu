@@ -24,6 +24,6 @@
 <div class="cal-container" *ngIf="selected!='' && selected!=null">
         <app-time></app-time>
       <ng-template ngFor let-j="index" let-day [ngForOf]="days">
-        <app-day [tasks]="getTasksForDay(day)"></app-day>
+        <app-day [tasks]="getTasksForDay(day)" [staff]="getStaffMember()"></app-day>
       </ng-template>
 </div>

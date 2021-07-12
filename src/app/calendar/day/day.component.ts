@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Staff } from 'src/app/models/staff.model';
 import { Task } from 'src/app/models/task.model';
 @Component({
   selector: 'app-day',
@@ -9,6 +10,10 @@ export class DayComponent implements OnInit {
 
   @Input('tasks')
   taskList:Task[]=[];
+
+  @Input('staff')
+  staff:Staff|null=null;
+
   intervalVisible:boolean[]=[];
   intervals:number[]=[];
   constructor() { }

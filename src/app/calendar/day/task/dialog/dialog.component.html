@@ -1,1 +1,22 @@
-<p>dialog works!</p>
+<h1 mat-dialog-title>{{data.type}}</h1>
+<div mat-dialog-content>
+  <p>
+    Organizer: <br/>
+      <strong>{{data.staff.title}} {{data.staff.firstName}} {{data.staff.lastName}}</strong>
+    </p>
+  <p>
+    Repeated during: <br/>
+      {{data.startDate}} - {{data.stopDate}}</p>
+  <p>
+    Duration hours: <br/>
+      {{data.startTime}} - {{data.stopTime}}</p>
+  <p>
+    Takes place on: <br/> 
+      {{getDayName(data.day)}}</p>
+  <p>
+      Description: <br/>
+      {{data.description}}</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

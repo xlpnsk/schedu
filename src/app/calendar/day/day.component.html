@@ -2,7 +2,7 @@
     <ng-template ngFor let-i="index" let-interval [ngForOf]="intervals">
         <div *ngIf="taskChecker(interval); then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
-            <app-task [style.grid-row]="getSpan(interval)" [task]="findTaskForInterval(interval)"></app-task>
+            <app-task [style.grid-row]="getSpan(interval)" [task]="findTaskForInterval(interval)" [staff]="staff"></app-task>
         </ng-template>
         <ng-template #elseBlock>
             <div class="not-task" *ngIf="this.intervalVisible[interval]"><br/></div>
