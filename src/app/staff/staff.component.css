@@ -67,4 +67,15 @@
   a{
       text-decoration: none;
       color: black;
+      display: block;
+      width: 100%;
   }
+
+  .card:hover{
+    box-shadow: 0 0 10px 8px hsla(256, 45%, 51%, 0.247);
+
+}
+
+.card:hover a{
+    text-shadow: 1px 1px hsla(256, 45%, 51%, 0.623);
+}
