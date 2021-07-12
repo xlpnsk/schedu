@@ -13,8 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { DayComponent } from './calendar/day/day.component';
 import { TimeComponent } from './calendar/time/time.component';
-import { IntervalComponent } from './calendar/day/interval/interval.component';
 import { FormsModule } from '@angular/forms';
+import { TaskComponent } from './calendar/day/task/task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     StaffComponent,
     DayComponent,
     TimeComponent,
-    IntervalComponent
+    TaskComponent
   ],
   imports: [
     BrowserModule,

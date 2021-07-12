@@ -5,7 +5,7 @@
             <!-- <div [style.grid-row]="getSpan(interval)" [style.background-color]="'aqua'">
                 task {{interval}}
             </div> -->
-            <app-interval [style.grid-row]="getSpan(interval)"></app-interval>
+            <app-task [style.grid-row]="getSpan(interval)"></app-task>
         </ng-template>
         <ng-template #elseBlock>
             <div class="not-task" *ngIf="this.intervalVisible[interval]"><br/></div>
