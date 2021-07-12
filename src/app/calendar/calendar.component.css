@@ -11,10 +11,19 @@
     display: flex;
     justify-content:center;
     flex-wrap: wrap;
+    padding-top: 2rem;
 }
 
 .form-field{
     width: 20rem;
     padding-left: 2rem;
     padding-right: 2rem;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+    .cal-container{
+        padding-bottom: 5rem;
+        overflow-x: auto;
+    }
 }

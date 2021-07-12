@@ -3,6 +3,7 @@
         {{taskType}}
     </header>
     <div *ngIf="task!=null" class="task-desc">
+        <p>{{task.startTime.slice(0,-3)}} - {{task.stopTime.slice(0,-3)}}</p>
         {{task.description}}
     </div>
 </article>

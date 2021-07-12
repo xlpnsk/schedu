@@ -15,6 +15,7 @@ import { DayComponent } from './calendar/day/day.component';
 import { TimeComponent } from './calendar/time/time.component';
 import { FormsModule } from '@angular/forms';
 import { TaskComponent } from './calendar/day/task/task.component';
+import { DialogComponent } from './calendar/day/task/dialog/dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { TaskComponent } from './calendar/day/task/task.component';
     StaffComponent,
     DayComponent,
     TimeComponent,
-    TaskComponent
+    TaskComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
