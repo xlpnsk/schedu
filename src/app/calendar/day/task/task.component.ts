@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/api.service';
 import { Staff } from 'src/app/models/staff.model';
 import { Task } from 'src/app/models/task.model';
-import { StaffComponent } from 'src/app/staff/staff.component';
 import { DialogComponent } from './dialog/dialog.component';
 
 @Component({

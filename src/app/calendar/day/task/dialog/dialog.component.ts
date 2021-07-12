@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Staff } from 'src/app/models/staff.model';
-import { Task } from 'src/app/models/task.model';
 
 export interface TaskDialogData{
   description: string;
