@@ -1,11 +1,8 @@
-<ng-template [ngIf]="isTask()" [ngIfElse]="isntTask">
-    <div class="task">
-      Task.
+<article class=task-card>
+    <header class="task-header">
+        {{taskType}}
+    </header>
+    <div *ngIf="task!=null" class="task-desc">
+        {{task.description}}
     </div>
-  </ng-template>
-  
-  <ng-template #isntTask>
-    <div class="normal">
-      Normal.
-    </div>
-  </ng-template>
+</article>

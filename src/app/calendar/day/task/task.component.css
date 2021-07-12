@@ -1,6 +1,33 @@
-.normal{
+.task-card{
     background-color: #6649b8;
     font-size: xx-small;
     text-align: center;
     height: 100%;
+    
+}
+
+.task-header{
+    font-weight: bolder;
+    font-size:medium;
+    padding-top: 1rem;
+}
+
+.task-desc{
+    font-size: small;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+    .task-card{
+        overflow-y: auto;
+    }
+    .task-header{
+        font-weight: bolder;
+        font-size:xx-small;
+        padding-top: 1rem;
+    }
+    
+    .task-desc{
+        font-size: xx-small;
+    }
 }

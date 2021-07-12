@@ -31,4 +31,15 @@ export class ApiService {
     return {data:Tasks, error}
 
   }
+
+  async getTaskType(id:number){
+    let { data: TaskType, error } = await this.supabase
+  .from('TaskType')
+  .select('name')
+
+  // Filters
+  .eq('id', id)
+
+  return { data: TaskType, error }
+  }
 }
