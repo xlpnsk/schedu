@@ -5,6 +5,12 @@
 }
 .time{
     background-color: darkgray;
-    font-size: xx-small;
+    font-size: small;
     text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .time{
+        font-size: xx-small;
+    }
 }

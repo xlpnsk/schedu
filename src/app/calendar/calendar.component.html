@@ -22,6 +22,11 @@
 </section>
 
 <div class="cal-container" *ngIf="selected!='' && selected!=null">
+  <ng-template ngFor let-header [ngForOf]="calHeaders">
+    <div class="cal-header">{{header}}</div>
+  </ng-template>
+</div>
+<div class="cal-container" *ngIf="selected!='' && selected!=null">
         <app-time></app-time>
       <ng-template ngFor let-j="index" let-day [ngForOf]="days">
         <app-day [tasks]="getTasksForDay(day)" [staff]="getStaffMember()"></app-day>

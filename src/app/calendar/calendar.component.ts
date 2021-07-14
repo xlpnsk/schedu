@@ -35,6 +35,8 @@ export class CalendarComponent implements OnInit {
   weekStop:Date|null=null;
   oldWeekStop:Date|null=null;
   
+  calHeaders:string[]=["Time","Monday","Tuesday","Wednesday","Thursday","Friday"];
+
   constructor(private api:ApiService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
