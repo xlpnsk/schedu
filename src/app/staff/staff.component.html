@@ -1,11 +1,12 @@
 
 <div class="container">
-    <input type="search" class="form_input" id="search" placeholder="Search" required="" />
+    <form [formGroup]="searchFromGroup"></form>
+    <input type="search" class="form_input" id="search" placeholder="Search" required="" [formControl]="searchControl"/>
     
 </div>
 
 <div class="card-container">
-    <div class="card" *ngFor="let staffMemeber of staffList">
+    <div class="card" *ngFor="let staffMemeber of visibleStaffList">
         <a href="#" [routerLink]="['/schedule', {selected: staffMemeber.id}]">
             <i class="fas fa-graduation-cap"></i>
             <h2>{{staffMemeber.title}} {{staffMemeber.lastName}} {{staffMemeber.firstName}}</h2>
