@@ -1,0 +1,25 @@
+<div class="main-container">
+<div class="form-container">
+<div class="img-container">
+<img class="logo" src="../../../assets/logo369x128.png">
+</div>
+<form class="form" [formGroup]="loginForm">    
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="mail@pollub.pl" [formControl]="email" required>
+      <mat-error *ngIf="this.email.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="this.password.invalid">{{getPasswdErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid.valueOf()" (click)="login()">Login</button>
+</form>
+<button mat-raised-button color="accent" routerLink="/register">Sign up</button>
+</div>
+  </div>
