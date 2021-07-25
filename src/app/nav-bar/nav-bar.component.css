@@ -1,3 +1,31 @@
+.toolbar{
+  display: none;
+  position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100% !important;
+
+    background-color: var(--bg-primary);
+  height: 4rem;
+  
+}
+.toolbar-link{
+  display: flex;
+      align-items: flex-end;
+      text-decoration: none;
+}
+
+.toolbar-text{
+  font-size: 1.5rem;
+  letter-spacing: 0.4ch;
+  font-family: 'Zen Tokyo Zoo';
+  color: var(--text-secondary);
+  font-weight: bold;
+  padding-left: 10px;
+  padding-bottom: 3px;
+}
+
 .navbar {
     position: fixed;
     background-color: var(--bg-primary);
@@ -110,6 +138,11 @@
   
     main {
       margin: 0;
+    }
+
+    .toolbar{
+      display: flex;
+      align-items: center;
     }
   }
   
