@@ -21,7 +21,7 @@
   </mat-form-field>
 </section>
 
-<div class="cal-container" *ngIf="selected!='' && selected!=null">
+<div class="cal-container cal-header-container" *ngIf="selected!='' && selected!=null">
   <ng-template ngFor let-header [ngForOf]="calHeaders">
     <div class="cal-header">{{header}}</div>
   </ng-template>
