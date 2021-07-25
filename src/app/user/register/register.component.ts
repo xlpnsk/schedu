@@ -1,9 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control?.invalid && control?.parent?.dirty);
+    const invalidParent = !!(control?.parent?.invalid && control?.parent?.dirty);
+
+    return invalidCtrl || invalidParent;
+  }
+}
+
+export function checkPasswords(passControl:AbstractControl): ValidatorFn {
+  return (control: AbstractControl):  ValidationErrors | null => { 
+    let confirmPass = control.value;
+    let pass=passControl.value;
+    return pass === confirmPass ? null : { notSame: true }
+  };
+}
 
 @Component({
   selector: 'app-register',
@@ -16,7 +32,7 @@ export class RegisterComponent implements OnInit {
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('' ,[Validators.required,Validators.minLength(8)])
-  repassword = new FormControl('',[Validators.required])
+  repassword = new FormControl('',[Validators.required,checkPasswords(this.password)])
 
   
   constructor(private api:ApiService,private router: Router) {
@@ -50,10 +66,10 @@ export class RegisterComponent implements OnInit {
 
   getRePasswdErrorMessage(){
     
-    if (this.password.hasError('required')) {
+    if (this.repassword.hasError('required')) {
       return 'You must enter a value';
     }  
-    else if (this.password != this.repassword){
+    else if (this.repassword.hasError('notSame')){
       return 'Your passwords are not the same'
     }
     return '';
