@@ -13,9 +13,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { DayComponent } from './calendar/day/day.component';
 import { TimeComponent } from './calendar/time/time.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskComponent } from './calendar/day/task/task.component';
 import { DialogComponent } from './calendar/day/task/dialog/dialog.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { AccountComponent } from './user/account/account.component';
+import { AuthGuard } from './guards/auth.guard';
+import { NewTaskComponent } from './forms/new-task/new-task.component';
+import { PasswdComponent } from './forms/passwd/passwd.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,17 +33,24 @@ import { DialogComponent } from './calendar/day/task/dialog/dialog.component';
     DayComponent,
     TimeComponent,
     TaskComponent,
-    DialogComponent
+    DialogComponent,
+    LoginComponent,
+    RegisterComponent,
+    AccountComponent,
+    NewTaskComponent,
+    PasswdComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DemoMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    ApiService
+    ApiService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
