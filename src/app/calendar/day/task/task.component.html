@@ -1,4 +1,4 @@
-<article class=task-card (click)="openDialog()">
+<article class=task-card (click)="openDialog()" [ngStyle]="{ 'background-color': color }">
     <header class="task-header">
         {{taskType}}
     </header>

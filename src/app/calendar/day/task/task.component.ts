@@ -19,6 +19,17 @@ export class TaskComponent implements OnInit {
   staff:Staff|null=null;
 
   taskType:string='';
+
+  colorPalete = [
+    "#6649b8", //"Plump Purple"
+    "#b80c09", //"International Orange Engineering"
+    "#f2dc5d", //"Minion Yellow"
+    "#1b9d8e", //"Persian Green"
+    "#48acf0", //"Blue Jeans"
+  ]
+
+  color:string="#6649b8";
+
   constructor(private api:ApiService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -27,7 +38,7 @@ export class TaskComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '50%',
+      width: '60vh',
       data: {
         description: this.task?.description,
         startDate: this.task?.startDate,
@@ -47,7 +58,8 @@ export class TaskComponent implements OnInit {
 
   setTaskType(){
     if(this.task!=null){
-      this.api.getTaskType(this.task.id)
+      this.setTaskColor();
+      this.api.getTaskType(this.task.typeId)
       .then((data) => {
         if(data.data!=null){
           this.taskType=data.data[0].name;
@@ -62,6 +74,11 @@ export class TaskComponent implements OnInit {
     }
     this.taskType=''
     console.warn("Waiting for the assignment of task type...")
+  }
+
+  setTaskColor(){
+    if(this.task?.typeId!==undefined)
+      this.color=this.colorPalete[this.task?.typeId-1];
   }
 
 }
