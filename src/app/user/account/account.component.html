@@ -1,0 +1,55 @@
+<section class="welcome-header">
+    <h2>Welcome...</h2>
+    <h3>Your data...</h3>
+</section>
+<div class="main-container">
+    <div class="cards-container">
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>Manage your account</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>  
+            <button mat-raised-button color="accent" routerLink="/password">Change your password</button>  
+            <button mat-raised-button color="warn" (click)="signOut()">Sign out</button>
+        </mat-card-content>
+        </mat-card>
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>Manage your tasks</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>  
+              <button mat-raised-button class="add-task-btn" routerLink="/task">New task</button>
+              <button mat-raised-button>Task list</button>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>Tasks for this week</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <header><h3>Today we have: {{today.toUTCString().slice(0,-12)}}</h3></header>
+            <article *ngFor="let task of taskList">
+              <mat-card class="card-task">
+              {{task.TaskType.name}}
+              <mat-divider [vertical]="true" style="height:20px; border-right: groove;"></mat-divider>
+              {{getDay(task.day)}}
+              <mat-divider [vertical]="true" style="height:20px; border-right: groove;"></mat-divider>
+              {{task.startTime.slice(0,-3)}} - {{task.stopTime.slice(0,-3)}}
+              </mat-card>
+            </article>
+        </mat-card-content>
+        </mat-card>
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>Contact with the administrator</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Your message</mat-label>
+                    <textarea matInput></textarea>
+                  </mat-form-field>  
+                <button mat-raised-button>Send</button>
+              </mat-card-content> 
+        </mat-card>
+    </div>
+</div>
