@@ -9,11 +9,22 @@
     --transition-speed: 600ms;
 }
 
+html{
+  height: 100%;
+}
+
 body {
     color: black;
     background-color: white;
     margin: 0;
     padding: 0;
+    min-height: 100%;
+    /*background-image: linear-gradient(to right bottom, #ff7eee, #e373e5, #c768dc, #ab5fd2, #8e55c7, #784fb7, #6349a6, #4f4295, #413b7b, #353461, #2c2b47, #23232e);*/
+    background-image: linear-gradient(to top, #ffffff, #fbfbff, #f8f6ff, #f4f2ff, #f1edff, #eeeafc, #ece8fa, #e9e5f7, #e6e3f1, #e3e2eb, #e1e0e4, #dedede);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center top;
+    background-attachment: fixed;
   }
   
   body::-webkit-scrollbar {
