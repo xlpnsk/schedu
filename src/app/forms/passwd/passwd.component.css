@@ -1,0 +1,35 @@
+.main-container{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    padding: 1rem;
+    max-width: 400px;
+    height: 40vh;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form > :not(:last-child) {
+    padding-bottom: 6px;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px){
+    .main-container{
+        height: 80vh;
+    }
+}
