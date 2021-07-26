@@ -72,10 +72,12 @@
   }
 
   .card:hover{
-    box-shadow: 0 0 10px 8px hsla(256, 45%, 51%, 0.247);
+    /* box-shadow: 0 0 10px 8px hsla(256, 45%, 51%, 0.247); */
+    box-shadow: 0 0 10px 8px #aaaaaa;
 
 }
 
 .card:hover a{
-    text-shadow: 1px 1px hsla(256, 45%, 51%, 0.623);
+    /* text-shadow: 1px 1px hsla(256, 45%, 51%, 0.623); */
+    text-shadow: 1px 1px #a5a5a5
 }

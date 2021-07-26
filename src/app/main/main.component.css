@@ -60,11 +60,11 @@ h3{
     width:30rem;
     height: 10rem;
     min-width: 5rem;
-    background-color: gainsboro;
+    background-color: #f2f2f2;
     overflow: hidden;
     font-family: 'DM Mono', monospace;
     margin: 0.7rem;
-    border-radius: 000.2rem;
+    border-radius: 10px;
     justify-content: center;
     text-align: center;
     box-shadow: 0 0 4px 4px #d0d0d0;
@@ -86,7 +86,7 @@ a{
 }
 
 a:hover{
-    background-color:gray;
+    background-color:#969696;
 }
 
 /* Small screens */
@@ -113,12 +113,14 @@ a:hover{
     align-items: center;
     margin:auto;
     justify-content: center;
-    box-shadow: 0 0px 35px 10px black;
+    box-shadow: 0 0 10px 8px #818181;
+    border-radius: 000.3rem 000.3rem 0 0;
 }
 
 .foot h2, .foot h4{
     color: gainsboro;
-    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-size: x-small;
 }
 
 .foot-content{
