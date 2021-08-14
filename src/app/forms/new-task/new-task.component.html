@@ -1,1 +1,72 @@
-<p>new-task works!</p>
+<div class="main-container">
+    <div class="form-container">
+        <h2>Create new task</h2>
+  <form class="form" [formGroup]="newTaskFG">
+    <mat-form-field appearance="fill">
+        <mat-label>Task type</mat-label>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Task type"
+               matInput
+               [formControl]="taskTypeFC"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="taskTypeFC.invalid">{{getTypeErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <section class="time-section">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Start time</mat-label>
+        <input type="time" matInput [formControl]="startTimeFC">
+        <mat-error *ngIf="startTimeFC.invalid">{{getStartTimeErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>End time</mat-label>
+        <input type="time" matInput [formControl]="stopTimeFC">
+        <mat-error *ngIf="stopTimeFC.invalid">{{getStopTimeErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </section>
+
+    <section class="date-section">
+    <mat-form-field appearance="fill">
+        <mat-label>Start date</mat-label>
+        <input matInput [matDatepicker]="startpicker" [formControl]="startDateFC">
+        <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+        <mat-datepicker #startpicker></mat-datepicker>
+        <mat-error *ngIf="stopDateFC.invalid">{{getStartDateErrorMessage()}}</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>End date</mat-label>
+        <input matInput [matDatepicker]="stoppicker" [formControl]="stopDateFC">
+        <mat-datepicker-toggle matSuffix [for]="stoppicker"></mat-datepicker-toggle>
+        <mat-datepicker #stoppicker></mat-datepicker>
+        <mat-error *ngIf="stopDateFC.invalid">{{getStopDateErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Repeat on every</mat-label>
+        <mat-select [formControl]="dayFC">
+          <mat-option *ngFor="let day of days" [value]="day.value">
+            {{day.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="dayFC.invalid">{{getDayErrorMessage()}}</mat-error>
+      </mat-form-field>
+      
+    </section>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder='e.g. "Tutorial for 3rd year students"' [formControl]="descriptionFC"></textarea>
+      </mat-form-field>
+  
+        <button type="submit" mat-raised-button color="primary" [disabled]="newTaskFG.invalid.valueOf()" (click)="saveTask()">Save changes</button>
+  </form>
+  <button mat-button color="primary" class="routing-btn" routerLink="/account">Back</button>
+  </div>
+  </div>

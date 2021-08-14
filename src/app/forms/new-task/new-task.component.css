@@ -1,0 +1,67 @@
+.main-container{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    padding: 1rem;
+    max-width: 800px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+    overflow: auto;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form > :not(:last-child) {
+    padding-bottom: 6px;
+}
+
+.date-section, .time-section{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.routing-btn{
+    margin-top: 5px;
+}
+
+.date-section > mat-form-field, .time-section > mat-form-field{
+    min-width: 35%;
+}
+
+.date-section > *{
+    margin-bottom: 3px;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px){
+    .main-container{
+        height: auto;
+        margin-bottom: 4rem;
+    }
+
+    .form-container{
+        max-width: 400px;
+        margin-bottom: 50px;
+    }
+
+    .date-section > mat-form-field, .time-section > mat-form-field{
+        min-width: 100%;
+    }
+
+    .time-section > *{
+        margin-bottom: 2px;
+    }
+}
