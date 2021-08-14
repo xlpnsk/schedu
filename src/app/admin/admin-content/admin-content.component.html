@@ -1,0 +1,72 @@
+<div class="container" [ngSwitch]="type">
+    <div *ngSwitchCase="'tasks'">
+    <mat-card class="card" *ngFor="let task of taskList">
+        <mat-card-header>
+          <div mat-card-avatar><i class="fas fa-calendar-check"></i></div>
+          <mat-card-title>{{task.TaskType.name}}</mat-card-title>
+          <mat-card-subtitle>{{task.Staff.email}}</mat-card-subtitle>
+          
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+              <strong>From:</strong> {{task.startDate}} <strong>to:</strong> {{task.stopDate}}
+            </p>
+            <p>
+              <strong>Duration time:</strong> {{task.startTime.slice(0,-3) + ' - ' + task.stopTime.slice(0,-3)}}
+            </p>
+            <p>
+              <strong>Repeats on:</strong> {{getDay(task.day)}}
+            </p>
+            <p *ngIf="task.description!=null">
+                <strong>Description:</strong> {{task.description}}
+            </p>
+          </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="warn" (click)="deleteTask(task.id)">DELETE</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+    <div *ngSwitchCase="'staff'">
+      <span><button mat-raised-button class="add-btn" (click)="newStaffNavig()">Add a staff member</button></span>
+    <mat-card class="card" *ngFor="let staff of staffList">
+        <mat-card-header>
+          <div mat-card-avatar><i class="fas fa-chalkboard-teacher"></i></div>
+          <mat-card-title>{{staff.title}} {{staff.firstName}} {{staff.lastName}}</mat-card-title>
+          <mat-card-subtitle *ngIf="staff.userId!=null">{{staff.userId}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="staff.userId==null" 
+          style=
+            "background-color:  var(--bg-primary); 
+            color: #ffd740; 
+            border-radius: 3px;
+            padding: 0 3px;
+            max-width: 228px;">
+            Staff member has not signed up yet
+          </mat-card-subtitle>
+          <mat-card-subtitle>{{staff.email}}</mat-card-subtitle>
+          
+        </mat-card-header>
+        <mat-card-content>
+            <p >
+                <strong>Role:</strong> {{staff.Roles.name}}
+            </p>
+          </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="editStaff(staff.id)">EDIT</button>
+          <button mat-button color="warn" (click)="deleteStaff(staff.id)">DELETE</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
+
+    <div *ngSwitchCase="'users'">
+    <article class="users">
+      <h2>Notice!</h2>
+      <p>User management is possible only from the database level. If you are authorized to do so, go to the Supabase project page:</p>
+      <span><a mat-raised-button href="https://app.supabase.io/project/yjuyvcstrnpwpqrcwbnb">Enter Supabase</a></span>
+    </article>
+
+</div>
+
+</div>
+    
