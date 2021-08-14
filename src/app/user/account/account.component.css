@@ -6,12 +6,11 @@
 .main-container{
     padding-top: 1rem;
     display: block;
-    padding-bottom: 6rem;
 }
 
 .cards-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
 }
 
@@ -40,3 +39,16 @@ header > h3{
     background-color:limegreen;
 }
 
+/* Small screens */
+@media only screen and (max-width: 800px){
+    .cards-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .main-container{
+        padding-bottom: 6rem;
+    }
+    .welcome-header{
+        background-size: cover;
+    }
+}

@@ -1,6 +1,6 @@
 <section class="welcome-header">
-    <h2>Welcome...</h2>
-    <h3>Your data...</h3>
+    <h2>Welcome</h2>
+    <h3>{{userEmail}}</h3>
 </section>
 <div class="main-container">
     <div class="cards-container">
@@ -18,8 +18,8 @@
                 <mat-card-title>Manage your tasks</mat-card-title>
               </mat-card-header>
               <mat-card-content>  
-              <button mat-raised-button class="add-task-btn" routerLink="/task">New task</button>
-              <button mat-raised-button>Task list</button>
+              <button mat-raised-button class="add-task-btn" [routerLink]="['/account/task']">New task</button>
+              <button mat-raised-button routerLink="/account/tasks">Task list</button>
             </mat-card-content>
         </mat-card>
         <mat-card class="card">
@@ -28,15 +28,31 @@
               </mat-card-header>
               <mat-card-content>
                 <header><h3>Today we have: {{today.toUTCString().slice(0,-12)}}</h3></header>
-            <article *ngFor="let task of taskList">
-              <mat-card class="card-task">
-              {{task.TaskType.name}}
-              <mat-divider [vertical]="true" style="height:20px; border-right: groove;"></mat-divider>
-              {{getDay(task.day)}}
-              <mat-divider [vertical]="true" style="height:20px; border-right: groove;"></mat-divider>
-              {{task.startTime.slice(0,-3)}} - {{task.stopTime.slice(0,-3)}}
-              </mat-card>
-            </article>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.length!=0">
+                
+                  <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                  </ng-container>
+                
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+                
+                  <ng-container matColumnDef="day">
+                    <th mat-header-cell *matHeaderCellDef> On </th>
+                    <td mat-cell *matCellDef="let element"> {{getDay(element.day)}} </td>
+                  </ng-container>
+                
+                  <ng-container matColumnDef="duration">
+                    <th mat-header-cell *matHeaderCellDef> Duration </th>
+                    <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+                  </ng-container>
+                
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
         </mat-card-content>
         </mat-card>
         <mat-card class="card">
@@ -44,11 +60,12 @@
                 <mat-card-title>Contact with the administrator</mat-card-title>
               </mat-card-header>
               <mat-card-content>
+                <form [formGroup]="messageFormGroup"></form>
                 <mat-form-field appearance="fill">
                     <mat-label>Your message</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea matInput [formControl]="messageFormControl"></textarea>
                   </mat-form-field>  
-                <button mat-raised-button>Send</button>
+                <button mat-raised-button [disabled]="messageFormGroup.invalid.valueOf()" (click)="sendMessage()">Send</button>
               </mat-card-content> 
         </mat-card>
     </div>
