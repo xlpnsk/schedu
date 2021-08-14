@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
@@ -31,11 +32,13 @@ export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('' ,[Validators.required,Validators.minLength(8)])
+  password = new FormControl('' ,[Validators.required,Validators.minLength(8),Validators.pattern(new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'))]);
   repassword = new FormControl('',[Validators.required,checkPasswords(this.password)])
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   
-  constructor(private api:ApiService,private router: Router) {
+  constructor(private api:ApiService,private router: Router, private _snackBar: MatSnackBar) {
     this.registerForm = new FormGroup({
       email: this.email,
       password: this.password,
@@ -44,6 +47,17 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  openSnackBar(message:string,isError:boolean){
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.horizontalPosition = this.horizontalPosition
+    config.verticalPosition = this.verticalPosition
+    if(isError){
+      config.panelClass = ['error-snackbar']
+    }
+    this._snackBar.open(message,'Hide',config)
   }
 
 
@@ -60,6 +74,8 @@ export class RegisterComponent implements OnInit {
     }
     else if(this.password.hasError('minlength'))
       return 'The minimum length of the password is 8 characters';
+    else if(this.password.hasError('pattern'))
+      return 'The password must contain both lower and uppercase letters, at least one number and special character (#?!@$%^&*-)';
     
     return '';
   }
@@ -81,6 +97,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl('/login', { replaceUrl: true });        
       }, async err => {           
         console.error('Registration failed')
+        this.openSnackBar('Registration failed! \n' + err.message ,true)
     });
   }
 
