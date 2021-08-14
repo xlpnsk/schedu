@@ -38,5 +38,18 @@ body {
   body::-webkit-scrollbar-thumb {
     background: #6649b8;
   }
+
+  .error-snackbar {
+    background-color: #b80c09 !important;
+    color: black  !important;
+    white-space: pre-wrap;
+  }
+  /* .error-snackbar > .mat-snack-bar-container button{
+    color: black !important;
+  }
+
+  .mat-snack-bar-container button{
+    color: #df49a6
+  } */
 /* html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
