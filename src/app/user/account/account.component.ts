@@ -1,6 +1,7 @@
 import { DataSource } from '@angular/cdk/collections';
 import { isDefined } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/api.service';
 
@@ -10,6 +11,13 @@ interface TaskForUser{
   day:number,
   startTime:string,
   stopTime:string,
+}
+
+interface VisibleTask{
+  position:number,
+  name:string,
+  day:number,
+  duration:string
 }
 
 @Component({
@@ -24,7 +32,21 @@ export class AccountComponent implements OnInit {
   userEmail:string='';
   taskList:TaskForUser[]|null=[];
   today = new Date();
-  constructor(private api:ApiService) {}
+  dataSource:VisibleTask[]=[];
+
+  displayedColumns: string[] = ['position', 'name', 'day', 'duration'];
+
+  messageFormGroup:FormGroup;
+  emailFormControl=new FormControl(this.userEmail);
+  messageFormControl=new FormControl('',[Validators.required]);
+
+  constructor(private api:ApiService) {
+    this.messageFormGroup=new FormGroup({
+      email: this.emailFormControl,
+      message: this.messageFormControl
+    });
+
+  }
 
   ngOnInit() {
     this.setUserEmail();
@@ -48,6 +70,7 @@ export class AccountComponent implements OnInit {
       if(typeof user?.email !== 'undefined'){
         this.userEmail=user?.email.toString();
       }
+      this.emailFormControl.setValue(this.userEmail);
       this.setStartStopWeek();
       this.setTaskList();
     })
@@ -66,6 +89,18 @@ export class AccountComponent implements OnInit {
         if(typeof tasks.data !== 'undefined')
           this.taskList=tasks.data;
         console.log(this.taskList)
+        var i=1;
+        this.taskList?.forEach((task) => {
+          let visTask:VisibleTask={
+            position: i,
+            name: task.TaskType.name,
+            day: task.day,
+            duration: task.startTime.slice(0,-3) + '-' + task.stopTime.slice(0,-3)
+          };
+          this.dataSource.push(visTask);
+          i++;
+        });
+        console.log(this.dataSource)
       })
       .catch((error) => {
         console.log(error);
@@ -78,6 +113,19 @@ export class AccountComponent implements OnInit {
   getDay(dayNum:number){
     let days=['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     return days[dayNum-1];
+  }
+
+  sendMessage(){
+    this.api.insertMessage(this.messageFormGroup.value)
+    .then(async data => {
+      console.log(data);
+      this.messageFormControl.setValue('');      
+      //show snackbar
+    }, async err => {           
+      console.error(err)
+      //show snackbar
+    })
+    .finally(() => {console.log('Sending compleated')});
   }
 
 }
