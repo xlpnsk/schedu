@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
@@ -35,7 +36,10 @@ export class PasswdComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private api:ApiService,private router: Router) {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  constructor(private api:ApiService,private router: Router, private _snackBar: MatSnackBar) {
     this.newPasswdForm = new FormGroup({
       password: this.newPasswd,
       rePassword: this.reNewPasswd
@@ -43,6 +47,17 @@ export class PasswdComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  openSnackBar(message:string,isError:boolean){
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.horizontalPosition = this.horizontalPosition
+    config.verticalPosition = this.verticalPosition
+    if(isError){
+      config.panelClass = ['error-snackbar']
+    }
+    this._snackBar.open(message,'Hide',config)
   }
 
   getPasswdErrorMessage(){
@@ -64,6 +79,16 @@ export class PasswdComponent implements OnInit {
       return 'Your passwords are not the same'
     }
     return '';
+  }
+
+  changePassword(){
+    this.api.changePasswd(this.newPasswdForm.get('password')?.value).then(async data => {      
+      console.log(data);      
+      this.router.navigateByUrl('/account', { replaceUrl: true });        
+    }, async err => {           
+      console.error('Password update failed')
+      this.openSnackBar('Password update failed',true)
+  });
   }
 
 }

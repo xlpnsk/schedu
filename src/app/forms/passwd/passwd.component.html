@@ -1,7 +1,7 @@
 <div class="main-container">
     <div class="form-container">
         <h2>Change your password</h2>
-  <form class="form" [formGroup]="newPasswdForm">    
+  <form class="form" [formGroup]="newPasswdForm" (ngSubmit)=changePassword()>    
       <mat-form-field appearance="fill">
           <mat-label>Enter your new password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" [formControl]="newPasswd" required>
@@ -20,8 +20,8 @@
           <mat-error *ngIf="reNewPasswd.invalid">{{getRePasswdErrorMessage()}}</mat-error>
         </mat-form-field>  
   
-        <button mat-raised-button color="primary" [disabled]="newPasswdForm.invalid.valueOf()">Save changes</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="newPasswdForm.invalid.valueOf()">Save changes</button>
   </form>
-  <button mat-button color="primary" routerLink="/account">Back</button>
+  <button mat-button color="primary" class="routing-btn" routerLink="/account">Back</button>
   </div>
   </div>
