@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
@@ -15,7 +16,10 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('' ,[Validators.required,Validators.minLength(8)])
 
-  constructor(private api:ApiService,private router: Router) {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  
+  constructor(private api:ApiService,private router: Router, private _snackBar: MatSnackBar) {
     this.loginForm = new FormGroup({
       email: this.email,
       password: this.password
@@ -23,6 +27,18 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.openSnackBar('You have to sign in',false)
+  }
+
+  openSnackBar(message:string,isError:boolean){
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.horizontalPosition = this.horizontalPosition
+    config.verticalPosition = this.verticalPosition
+    if(isError){
+      config.panelClass = ['error-snackbar']
+    }
+    this._snackBar.open(message,'Hide',config)
   }
 
   getEmailErrorMessage() {
@@ -49,6 +65,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/account', { replaceUrl: true });
     }, async err => {           
       console.error(err)
+      this.openSnackBar(err.message,true)
     });
   }
 }
