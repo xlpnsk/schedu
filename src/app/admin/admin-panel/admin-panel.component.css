@@ -1,0 +1,38 @@
+.admin-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "h h h"
+        "t t m"
+        "t t m"
+        "t t m";
+    
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+.header-card{
+    grid-area: h;
+}
+
+.tabs-card{
+    grid-area: t;
+}
+
+.message-card{
+    grid-area: m;
+}
+
+
+@media only screen and (max-width: 750px){
+    .admin-container{
+        grid-template-areas:
+            "h h h"
+            "t t t"
+            "m m m";
+
+        /* margin-top: 6vh; */
+        margin-bottom: 11vh;
+    }
+}
