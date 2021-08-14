@@ -123,6 +123,16 @@ export class CalendarComponent implements OnInit {
   getStaffMember(){
     if(this.staffList==null || this.selected==null)
       return null;
-    return this.staffList[parseInt(this.selected)-1];
+    let selectedMemeber = this.staffList.find((member) => {
+        if(this.selected!=null){
+          if(member.id==parseInt(this.selected)){
+            return true;
+          }
+        }
+        return false;     
+    });
+    if(typeof selectedMemeber !== 'undefined')
+      return selectedMemeber
+    return null;
   }
 }
