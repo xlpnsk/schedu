@@ -1,0 +1,32 @@
+<div class="header">
+<h1>Task list</h1>
+<button mat-stroked-button color="primary" class="back-btn" routerLink="/account"><span><i class="fas fa-chevron-left"></i> Back</span></button>
+</div>
+<div class="container" *ngIf="taskList else loading">
+<mat-card class="card" *ngFor="let task of taskList">
+    <mat-card-header>
+      <div mat-card-avatar><i class="fas fa-calendar-check"></i></div>
+      <mat-card-title>{{task.TaskType.name}}</mat-card-title>
+      <mat-card-subtitle>{{getDay(task.day)}}</mat-card-subtitle>
+      <mat-card-subtitle>{{task.startTime.slice(0,-3) + ' - ' + task.stopTime.slice(0,-3)}}</mat-card-subtitle>
+      
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+          <!-- From: <strong>{{task.startDate}}</strong> to: <strong>{{task.stopDate}}</strong> -->
+          <strong>From:</strong> {{task.startDate}} <strong>to:</strong> {{task.stopDate}}
+        </p>
+        <p *ngIf="task.description!=null">
+            <strong>Description:</strong> {{task.description}}
+        </p>
+      </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="accent" [routerLink]="['/account/task', {edit: task.id}]">EDIT</button>
+      <button mat-button color="warn" (click)="deleteTask(task.id)">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>
