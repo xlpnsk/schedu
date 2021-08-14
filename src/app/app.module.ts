@@ -22,6 +22,12 @@ import { AccountComponent } from './user/account/account.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NewTaskComponent } from './forms/new-task/new-task.component';
 import { PasswdComponent } from './forms/passwd/passwd.component';
+import { TaskListComponent } from './user/task-list/task-list.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { AdminContentComponent } from './admin/admin-content/admin-content.component';
+import { AdminMessagesComponent } from './admin/admin-messages/admin-messages.component';
+import { NewStaffComponent } from './forms/new-staff/new-staff.component';
+import { ContactComponent } from './contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +44,13 @@ import { PasswdComponent } from './forms/passwd/passwd.component';
     RegisterComponent,
     AccountComponent,
     NewTaskComponent,
-    PasswdComponent
+    PasswdComponent,
+    TaskListComponent,
+    AdminPanelComponent,
+    AdminContentComponent,
+    AdminMessagesComponent,
+    NewStaffComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
