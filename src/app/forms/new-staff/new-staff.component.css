@@ -1,0 +1,70 @@
+.main-container{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    padding: 1rem;
+    max-width: 800px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+    overflow: auto;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form > :not(:last-child) {
+    padding-bottom: 6px;
+}
+
+.mail-section, .name-section{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.routing-btn{
+    margin-top: 5px;
+}
+.name-section > mat-form-field{
+    min-width: 30%;
+}
+
+.mail-section > mat-form-field{
+    min-width: 35%;
+}
+
+.mail-section > *{
+    margin-bottom: 3px;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px){
+    .main-container{
+        height: auto;
+        margin-bottom: 4rem;
+    }
+
+    .form-container{
+        max-width: 400px;
+        margin-bottom: 50px;
+    }
+
+    .mail-section > mat-form-field, .name-section > mat-form-field{
+        min-width: 100%;
+    }
+
+    .name-section > *{
+        margin-bottom: 2px;
+    }
+}
