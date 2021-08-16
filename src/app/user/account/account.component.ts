@@ -2,6 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { isDefined } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/api.service';
 
@@ -40,7 +41,10 @@ export class AccountComponent implements OnInit {
   emailFormControl=new FormControl(this.userEmail);
   messageFormControl=new FormControl('',[Validators.required]);
 
-  constructor(private api:ApiService) {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  constructor(private api:ApiService,private _snackBar: MatSnackBar) {
     this.messageFormGroup=new FormGroup({
       email: this.emailFormControl,
       message: this.messageFormControl
@@ -88,7 +92,6 @@ export class AccountComponent implements OnInit {
       .then((tasks) => {
         if(typeof tasks.data !== 'undefined')
           this.taskList=tasks.data;
-        console.log(this.taskList)
         var i=1;
         this.taskList?.forEach((task) => {
           let visTask:VisibleTask={
@@ -100,10 +103,9 @@ export class AccountComponent implements OnInit {
           this.dataSource.push(visTask);
           i++;
         });
-        console.log(this.dataSource)
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       })
       .finally(() => {
         console.log('Selecting from Tasks completed');
@@ -118,14 +120,23 @@ export class AccountComponent implements OnInit {
   sendMessage(){
     this.api.insertMessage(this.messageFormGroup.value)
     .then(async data => {
-      console.log(data);
       this.messageFormControl.setValue('');      
-      //show snackbar
+      this.openSnackBar('Your message has been sent',false);
     }, async err => {           
-      console.error(err)
-      //show snackbar
+      console.error(err);
+      this.openSnackBar(err,true);
     })
     .finally(() => {console.log('Sending compleated')});
   }
 
+  openSnackBar(message:string,isError:boolean){
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.horizontalPosition = this.horizontalPosition
+    config.verticalPosition = this.verticalPosition
+    if(isError){
+      config.panelClass = ['error-snackbar']
+    }
+    this._snackBar.open(message,'Hide',config)
+  }
 }
