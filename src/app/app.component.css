@@ -4,9 +4,13 @@ main {
     min-height: 100%;
   }
 
+  .mat-accent{
+    background-color: #df49a6
+  }
+
   @media only screen and (max-width: 600px) {
     main {
       margin: 0;
-      margin-top: 4vh;
+      margin-top: 4rem;
     }
 }

@@ -8,5 +8,6 @@
 .not-task{
     background-color: #c5bae8;/*#c5bae8*/
     font-size: xx-small;
-    max-height: 20px;
+    min-height: 20px !important;
+    max-height: 20px !important;
 }
