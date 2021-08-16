@@ -92,8 +92,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async signUp() {    
-    this.api.signUp(this.registerForm.value).then(async data => {      
-        console.log(data);      
+    this.api.signUp(this.registerForm.value).then(async data => {           
         this.router.navigateByUrl('/login', { replaceUrl: true });        
       }, async err => {           
         console.error('Registration failed')

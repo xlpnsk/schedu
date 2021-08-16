@@ -41,7 +41,6 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.selected=this.route.snapshot.paramMap.get('selected');
-    console.log(this.selected);
     //this.oldSelected=this.selected;
     for(let i=0;i<56;i++)
       this.intervals[i]=i;

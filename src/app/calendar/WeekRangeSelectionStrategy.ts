@@ -22,7 +22,6 @@ export class WeekRangeSelectionStrategy<D> implements MatDateRangeSelectionStrat
     if (date) {
       let d=new Date(<Date>date);
       let s=d.getDay();
-      //console.log(s);
       const start = this._dateAdapter.addCalendarDays(<D>date, -s);
       const end = this._dateAdapter.addCalendarDays(start, 6);
       return new DateRange<D>(start, end);

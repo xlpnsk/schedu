@@ -52,7 +52,6 @@ export class TaskListComponent implements OnInit {
   deleteTask(id:number){
     this.api.deleteTask(id)
     .then((data) => {
-      console.log(data);
       this.getTasks();
     })
     .catch((error) => {

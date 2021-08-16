@@ -73,7 +73,7 @@ export class TaskComponent implements OnInit {
       });
     }
     this.taskType=''
-    console.warn("Waiting for the assignment of task type...")
+    console.log("Waiting for the assignment of task type...")
   }
 
   setTaskColor(){

@@ -82,8 +82,7 @@ export class PasswdComponent implements OnInit {
   }
 
   changePassword(){
-    this.api.changePasswd(this.newPasswdForm.get('password')?.value).then(async data => {      
-      console.log(data);      
+    this.api.changePasswd(this.newPasswdForm.get('password')?.value).then(async data => {           
       this.router.navigateByUrl('/account', { replaceUrl: true });        
     }, async err => {           
       console.error('Password update failed')

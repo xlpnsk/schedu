@@ -53,7 +53,6 @@ export class StaffComponent implements OnInit {
         return reg.test(fullName.toLowerCase())
       });
       this.visibleStaffList=(typeof(filtered)=='undefined')? [] : filtered;
-      console.log(this.visibleStaffList)
     }
   }
 

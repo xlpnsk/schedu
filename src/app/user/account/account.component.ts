@@ -87,7 +87,6 @@ export class AccountComponent implements OnInit {
   }
 
   setTaskList(){
-    console.log(this.userEmail);
     this.api.getTasksByEmail(this.userEmail,this.weekStart,this.weekStop)
       .then((tasks) => {
         if(typeof tasks.data !== 'undefined')

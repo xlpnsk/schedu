@@ -59,9 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log(this.loginForm.value);
-    this.api.signIn(this.loginForm.value).then(async data => {
-      console.log(data);      
+    this.api.signIn(this.loginForm.value).then(async data => {      
       this.router.navigateByUrl('/account', { replaceUrl: true });
     }, async err => {           
       console.error(err)

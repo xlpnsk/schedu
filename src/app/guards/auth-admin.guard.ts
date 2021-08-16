@@ -30,24 +30,6 @@ export class AuthAdminGuard implements CanActivate {
     )
     )
   }   
-  //   return this.api.currentUser.pipe(
-  //     filter(val => val !== null), // Filter out initial Behaviour subject value
-  //     take(1), // Otherwise the Observable doesn't complete!
-  //     map(isAuthenticated => {
-  //       if (isAuthenticated) {
-  //         this.api.admin.pipe(filter(val => val !== null),take(1))  //this will limit the observable to only one value
-  //         .subscribe((val) => {
-  //             console.log(val)
-  //             this.isAdmin = val; 
-  //         });
-  //         console.log('th'+this.isAdmin)     
-  //         return true;
-  //       } else {          
-  //         this.router.navigateByUrl('/login')
-  //         return false;
-  //       }
-  //     })
-  //   );
-  // }
+  
   
 }

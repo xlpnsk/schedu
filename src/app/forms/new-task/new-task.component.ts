@@ -156,7 +156,6 @@ export class NewTaskComponent implements OnInit {
         if(error==null){
           if(typeof data != 'undefined')
             this.taskList=data;
-          console.log(this.taskList);
         }
         else{
           this.openSnackBar('Error while connecting to API',true)
@@ -172,7 +171,6 @@ export class NewTaskComponent implements OnInit {
         tasktypes.data.forEach((type) => {
           this.taskTypes.push({id:type.id,name:type.name});
         });
-        console.log(this.taskTypes);
         tasktypes.data.forEach( (type) => {
           this.options.push(type.name);
         });
